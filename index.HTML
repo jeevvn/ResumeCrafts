@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeCraft | Professional Resume Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables for Themes */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --text: #212529;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --footer-bg: #212529;
+            --footer-text: #f8f9fa;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --primary: #4895ef;
+            --secondary: #4361ee;
+            --accent: #4cc9f0;
+            --text: #f8f9fa;
+            --bg: #121212;
+            --card-bg: #1e1e1e;
+            --header-bg: rgba(30, 30, 30, 0.95);
+            --footer-bg: #0a0a0a;
+            --footer-text: #e9ecef;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--header-bg);
+            box-shadow: 0 2px 10px var(--shadow);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            color: var(--text);
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: var(--transition);
+            margin-left: 20px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .hero-content {
+            width: 50%;
+            padding: 30px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+        }
+
+        /* Templates Section */
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .template-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            height: 350px;
+        }
+
+        .template-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+
+        .template-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .template-card:hover .template-overlay {
+            opacity: 1;
+        }
+
+        .template-info {
+            padding: 20px;
+        }
+
+        .template-info h3 {
+            margin-bottom: 10px;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .works-container {
+            display: flex;
+            min-height: 500px;
+        }
+
+        .works-video, .works-steps {
+            flex: 1;
+        }
+
+        .works-video {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f0f0;
+            padding: 30px;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .works-steps {
+            padding: 40px;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-right: 20px;
+        }
+
+        .step-content h3 {
+            margin-bottom: 10px;
+        }
+
+        /* About Us */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-img {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 5rem;
+        }
+
+        .member-info {
+            padding: 20px;
+        }
+
+        .member-info h3 {
+            margin-bottom: 5px;
+        }
+
+        .member-role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 70px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                width: 70%;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .works-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--header-bg);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px var(--shadow);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 20px;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero-content {
+                width: 90%;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 70px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Resume<span>Craft</span></a>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#templates">Templates</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#" class="btn btn-outline" id="createResumeBtn">Create Resume</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="video-bg" autoplay muted loop>
+            <source src="https://cdn.pixabay.com/video/2025/04/29/275498_large.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Create a Professional Resume in Minutes</h1>
+                <p>Stand out from the crowd with our professionally designed resume templates. Easy to customize, download, and share.</p>
+                <a href="#templates" class="btn">Browse Templates</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Section -->
+    <section class="section" id="templates">
+        <div class="container">
+            <h2 class="section-title">Professional Templates</h2>
+            <div class="templates-grid">
+                <!-- Template 1 -->
+                <div class="template-card">
+                    <div class="template-img" style="background: linear-gradient(135deg, #4361ee, #4cc9f0);"></div>
+                    <div class="template-overlay">
+                        <button class="btn">Preview Template</button>
+                    </div>
+                    <div class="template-info">
+                        <h3>Modern Executive</h3>
+                        <p>Clean and professional design</p>
+                    </div>
+                </div>
+                
+                <!-- Template 2 -->
+                <div class="template-card">
+                    <div class="template-img" style="background: linear-gradient(135deg, #7209b7, #f72585);"></div>
+                    <div class="template-overlay">
+                        <button class="btn">Preview Template</button>
+                    </div>
+                    <div class="template-info">
+                        <h3>Creative Pro</h3>
+                        <p>For design and creative fields</p>
+                    </div>
+                </div>
+                
+                <!-- Template 3 -->
+                <div class="template-card">
+                    <div class="template-img" style="background: linear-gradient(135deg, #f8961e, #f94144);"></div>
+                    <div class="template-overlay">
+                        <button class="btn">Preview Template</button>
+                    </div>
+                    <div class="template-info">
+                        <h3>Tech Specialist</h3>
+                        <p>Perfect for IT professionals</p>
+                    </div>
+                </div>
+                
+                <!-- Template 4 -->
+                <div class="template-card">
+                    <div class="template-img" style="background: linear-gradient(135deg, #2a9d8f, #e9c46a);"></div>
+                    <div class="template-overlay">
+                        <button class="btn">Preview Template</button>
+                    </div>
+                    <div class="template-info">
+                        <h3>Minimalist</h3>
+                        <p>Simple and elegant design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="how-it-works">
+                <div class="works-container">
+                    <div class="works-video">
+                        <div class="video-placeholder">
+                            <div>
+                                <i class="fas fa-play-circle" style="font-size: 4rem; margin-bottom: 20px;"></i>
+                                <p>Quick Demo Video</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="works-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Choose a Template</h3>
+                                <p>Browse our collection of professionally designed resume templates and pick the one that suits your style.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Fill in Your Details</h3>
+                                <p>Enter your personal information, work experience, education, and skills in our easy-to-use form.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Customize & Download</h3>
+                                <p>Preview your resume, make any final adjustments, then download in PDF format ready to share.</p>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 30px;">
+                            <a href="#" class="btn">Start Creating</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Alex Johnson</h3>
+                        <div class="member-role">Founder & CEO</div>
+                        <p>With 10+ years in HR, Alex knows what employers look for in a resume.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Sarah Williams</h3>
+                        <div class="member-role">Design Director</div>
+                        <p>Sarah creates beautiful, functional designs that help resumes stand out.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="member-info">
+                        <h3>Michael Chen</h3>
+                        <div class="member-role">Lead Developer</div>
+                        <p>Michael builds the technology that makes resume creation fast and easy.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-stack-overflow"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ResumeCraft</h3>
+                    <p>Creating professional resumes that help you land your dream job. Our tools make resume building quick, easy, and effective.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#templates">Templates</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Resume Tips</a></li>
+                        <li><a href="#">Cover Letter Samples</a></li>
+                        <li><a href="#">Job Search Guide</a></li>
+                        <li><a href="#">Interview Preparation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@resumecraft.com">info@resumecraft.com</a></li>
+                        <li><a href="tel:+11234567890">+1 (123) 456-7890</a></li>
+                        <li><a href="#">123 Career Street, Job City</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ResumeCraft. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            mobileToggle.innerHTML = navMenu.classList.contains('show') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Create Resume Button
+        const createResumeBtn = document.getElementById('createResumeBtn');
+        
+        createResumeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // In a real application, this would open the form page
+            alert('Form page would open in a new tab. This is a demo.');
+            // window.open('form.html', '_blank');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
