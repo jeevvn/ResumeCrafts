@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeCraft | Create Your Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    
+</head>
+<body>
+    <!-- Form Header -->
+    <header class="form-header">
+        <div class="container header-content">
+            <a href="#" class="logo">Resume<span>Craft</span></a>
+            <div class="dark-mode-toggle" id="darkModeToggle">
+                <div class="toggle-switch"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Form Content -->
+    <div class="container">
+        <!-- Steps Navigation -->
+        <div class="steps-container" id="stepsContainer">
+            <div class="step-item active" data-step="1">
+                <div class="step-circle">1</div>
+                <div class="step-title">Contact</div>
+            </div>
+            <div class="step-item" data-step="2">
+                <div class="step-circle">2</div>
+                <div class="step-title">Education</div>
+            </div>
+            <div class="step-item" data-step="3">
+                <div class="step-circle">3</div>
+                <div class="step-title">Experience</div>
+            </div>
+            <div class="step-item" data-step="4">
+                <div class="step-circle">4</div>
+                <div class="step-title">Certifications</div>
+            </div>
+            <div class="step-item" data-step="5">
+                <div class="step-circle">5</div>
+                <div class="step-title">Skills</div>
+            </div>
+            <div class="step-item" data-step="6">
+                <div class="step-circle">6</div>
+                <div class="step-title">Summary</div>
+            </div>
+            <div class="step-item" data-step="7">
+                <div class="step-circle">7</div>
+                <div class="step-title">References</div>
+            </div>
+            <div class="step-item" data-step="8">
+                <div class="step-circle">8</div>
+                <div class="step-title">Finalize</div>
+            </div>
+        </div>
+
+        <!-- Step 1: Contact -->
+        <div class="form-container" id="step1">
+            <div class="form-header-section">
+                <h2>Contact</h2>
+                <p>Let's start with the basics. To ensure employers can reach you, input at least your name, email, and phone number.</p>
+            </div>
+            
+            <div class="form-body">
+                <!-- Photo Upload -->
+                <div class="form-section">
+                    <div class="photo-upload">
+                        <div class="photo-preview" id="photoPreview">
+                            <i class="fas fa-user-plus"></i>
+                            <img id="previewImage" src="" alt="Preview">
+                        </div>
+                        <div>
+                            <label>Add a Photo to Your Resume <span class="optional">(Optional)</span></label>
+                            <p>Adding a professional photo can help employers remember you</p>
+                            <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                            <button class="btn btn-outline" style="margin-top: 15px;" onclick="document.getElementById('photoUpload').click()">Add Photo</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="form-section">
+                    <h3 class="form-section-title">Personal Information</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="firstName">First Name <span class="optional">*</span></label>
+                            <input type="text" id="firstName" placeholder="John" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="optional">*</span></label>
+                            <input type="text" id="lastName" placeholder="Doe" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="jobTitle">Desired Job Title <span class="optional">(Optional)</span></label>
+                            <input type="text" id="jobTitle" placeholder="Software Engineer">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Contact Details</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="phone">Phone <span class="optional">*</span></label>
+                            <input type="tel" id="phone" placeholder="+1 (123) 456-7890" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="country">Country <span class="optional">*</span></label>
+                            <select id="country" required>
+                                <option value="">Select Country</option>
+                                <option value="US">United States</option>
+                                <option value="IN">India</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="CA">Canada</option>
+                                <option value="AU">Australia</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="city">City or Town <span class="optional">*</span></label>
+                            <input type="text" id="city" placeholder="New York" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="state">State or Union Territory <span class="optional">*</span></label>
+                            <input type="text" id="state" placeholder="New York" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pinCode">PIN Code <span class="optional">*</span></label>
+                            <input type="text" id="pinCode" placeholder="10001" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email <span class="optional">*</span></label>
+                            <input type="email" id="email" placeholder="john.doe@example.com" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Additional Information <span class="optional">(Optional)</span></h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="license">Driving License</label>
+                            <input type="text" id="license" placeholder="License number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nationality">Nationality</label>
+                            <input type="text" id="nationality" placeholder="American">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <input type="url" id="linkedin" placeholder="https://linkedin.com/in/username">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="twitter">Twitter</label>
+                            <input type="url" id="twitter" placeholder="https://twitter.com/username">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="website">Website</label>
+                            <input type="url" id="website" placeholder="https://yourwebsite.com">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form Tips -->
+                <div class="form-tips">
+                    <h4><i class="fas fa-lightbulb"></i> Contact Tips</h4>
+                    <ul>
+                        <li>Use a professional email address. One that includes your full name helps.</li>
+                        <li>Gmail is the preferred email client. Addresses from 'Yahoo' or 'Hotmail' can seem outdated.</li>
+                        <li>Include a phone number with a professional voicemail message.</li>
+                        <li>Make sure your LinkedIn profile is up-to-date and matches your resume.</li>
+                        <li>Only include social media links if they are professional and relevant.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button class="btn btn-secondary" disabled>Back</button>
+                <button class="btn btn-success" onclick="navigateToStep(2)">Save & Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Education -->
+        <div class="form-container" id="step2" style="display: none;">
+            <div class="form-header-section">
+                <h2>Education</h2>
+                <p>List your educational qualifications starting with the most recent degree or certification.</p>
+            </div>
+            
+            <div class="form-body">
+                <div id="educationContainer">
+                    <div class="repeater-section">
+                        <button class="remove-btn" onclick="removeEducation(this)"><i class="fas fa-times"></i></button>
+                        
+                        <div class="form-section">
+                            <h3 class="form-section-title">Education #1</h3>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="degree">Degree/Certificate <span class="optional">*</span></label>
+                                    <input type="text" id="degree" placeholder="Bachelor of Science in Computer Science" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="school">School/University <span class="optional">*</span></label>
+                                    <input type="text" id="school" placeholder="University of Technology" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="location">Location <span class="optional">(Optional)</span></label>
+                                    <input type="text" id="location" placeholder="New York, USA">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="eduStartDate">Start Date <span class="optional">*</span></label>
+                                    <input type="month" id="eduStartDate" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="eduEndDate">End Date (or Expected) <span class="optional">*</span></label>
+                                    <input type="month" id="eduEndDate" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="gpa">GPA/Score <span class="optional">(Optional)</span></label>
+                                    <input type="text" id="gpa" placeholder="3.8/4.0">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Description <span class="optional">(Optional)</span></label>
+                                <textarea id="description" rows="3" placeholder="Relevant coursework, achievements, honors..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="add-btn-container">
+                    <button class="btn btn-outline" onclick="addEducation()"><i class="fas fa-plus"></i> Add Another Education</button>
+                </div>
+                
+                <!-- Form Tips -->
+                <div class="form-tips">
+                    <h4><i class="fas fa-lightbulb"></i> Education Tips</h4>
+                    <ul>
+                        <li>List your most recent degree first.</li>
+                        <li>Include your GPA if it's 3.0 or higher.</li>
+                        <li>Mention relevant coursework if you have limited work experience.</li>
+                        <li>Include study abroad programs if applicable.</li>
+                        <li>Add your expected graduation date if you're still in school.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="navigateToStep(1)">Back</button>
+                <button class="btn btn-success" onclick="navigateToStep(3)">Save & Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Experience -->
+        <div class="form-container" id="step3" style="display: none;">
+            <div class="form-header-section">
+                <h2>Work Experience</h2>
+                <p>Detail your professional experience. Focus on achievements and responsibilities relevant to your target job.</p>
+            </div>
+            
+            <div class="form-body">
+                <div id="experienceContainer">
+                    <div class="repeater-section">
+                        <button class="remove-btn" onclick="removeExperience(this)"><i class="fas fa-times"></i></button>
+                        
+                        <div class="form-section">
+                            <h3 class="form-section-title">Experience #1</h3>
+                            
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="jobTitle">Job Title <span class="optional">*</span></label>
+                                    <input type="text" id="jobTitle" placeholder="Software Engineer" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="company">Company <span class="optional">*</span></label>
+                                    <input type="text" id="company" placeholder="Tech Innovations Inc." required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="location">Location <span class="optional">(Optional)</span></label>
+                                    <input type="text" id="location" placeholder="San Francisco, CA">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="expStartDate">Start Date <span class="optional">*</span></label>
+                                    <input type="month" id="expStartDate" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="expEndDate">End Date <span class="optional">(Leave blank if current)</span></label>
+                                    <input type="month" id="expEndDate">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="currentJob"> I currently work here
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="jobDescription">Job Description <span class="optional">*</span></label>
+                                <textarea id="jobDescription" rows="4" placeholder="Describe your responsibilities and achievements..." required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="add-btn-container">
+                    <button class="btn btn-outline" onclick="addExperience()"><i class="fas fa-plus"></i> Add Another Experience</button>
+                </div>
+
+
+
+
+                
+                <!-- Form Tips -->
+                <div class="form-tips">
+                    <h4><i class="fas fa-lightbulb"></i> Experience Tips</h4>
+                    <ul>
+                        <li>Start each bullet point with a strong action verb.</li>
+                        <li>Quantify achievements when possible (e.g. "Increased sales by 20%").</li>
+                        <li>Tailor your experience to match the job you're applying for.</li>
+                        <li>List your most recent position first.</li>
+                        <li>Keep descriptions concise but impactful.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="navigateToStep(2)">Back</button>
+                <button class="btn btn-success" onclick="navigateToStep(4)">Save & Continue</button>
+            </div>
+        </div>
+
+
+         <!-- Step 4: Certifications -->
+<div class="form-container" id="step4" style="display: none;">
+    <div class="form-header-section">
+        <h2>Certifications</h2>
+        <p>List any professional certifications that are relevant to your career.</p>
+    </div>
+    
+    <div class="form-body">
+        <div id="certificationsContainer">
+            <div class="repeater-section">
+                <button class="remove-btn" onclick="removeCertification(this)"><i class="fas fa-times"></i></button>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Certification #1</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="certName">Certification Name <span class="optional">*</span></label>
+                            <input type="text" id="certName" placeholder="AWS Certified Solutions Architect" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="issuingOrg">Issuing Organization <span class="optional">*</span></label>
+                            <input type="text" id="issuingOrg" placeholder="Amazon Web Services" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="certDate">Date Issued <span class="optional">*</span></label>
+                            <input type="month" id="certDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="expirationDate">Expiration Date <span class="optional">(If applicable)</span></label>
+                            <input type="month" id="expirationDate">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="credentialID">Credential ID <span class="optional">(Optional)</span></label>
+                            <input type="text" id="credentialID" placeholder="License number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="certUrl">Credential URL <span class="optional">(Optional)</span></label>
+                            <input type="url" id="certUrl" placeholder="https://example.com/verify">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="add-btn-container">
+            <button class="btn btn-outline" onclick="addCertification()"><i class="fas fa-plus"></i> Add Another Certification</button>
+        </div>
+        
+        <!-- Form Tips -->
+        <div class="form-tips">
+            <h4><i class="fas fa-lightbulb"></i> Certification Tips</h4>
+            <ul>
+                <li>Include only certifications relevant to the job you're applying for</li>
+                <li>List the most recent certifications first</li>
+                <li>Include expiration dates if applicable</li>
+                <li>Provide credential IDs for verification</li>
+                <li>Mention if you're currently pursuing a certification</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Form Actions -->
+    <div class="form-actions">
+        <button class="btn btn-secondary" onclick="navigateToStep(3)">Back</button>
+        <button class="btn btn-success" onclick="navigateToStep(5)">Save & Continue</button>
+    </div>
+</div>
+
+<!-- Step 5: Skills -->
+<div class="form-container" id="step5" style="display: none;">
+    <div class="form-header-section">
+        <h2>Skills</h2>
+        <p>Highlight your key skills and areas of expertise.</p>
+    </div>
+    
+    <div class="form-body">
+        <div class="form-section">
+            <h3 class="form-section-title">Technical Skills</h3>
+            
+            <div class="form-group">
+                <label for="technicalSkills">List your technical/professional skills <span class="optional">*</span></label>
+                <textarea id="technicalSkills" rows="3" placeholder="JavaScript, Python, React, SQL, AWS, Project Management..." required></textarea>
+                <p class="optional" style="margin-top: 5px;">Separate skills with commas</p>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3 class="form-section-title">Soft Skills</h3>
+            
+            <div class="form-group">
+                <label for="softSkills">List your interpersonal skills <span class="optional">(Optional)</span></label>
+                <textarea id="softSkills" rows="2" placeholder="Communication, Leadership, Teamwork, Problem Solving..."></textarea>
+                <p class="optional" style="margin-top: 5px;">Separate skills with commas</p>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3 class="form-section-title">Languages</h3>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="language1">Language <span class="optional">*</span></label>
+                    <input type="text" id="language1" placeholder="English" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="proficiency1">Proficiency Level <span class="optional">*</span></label>
+                    <select id="proficiency1" required>
+                        <option value="">Select Level</option>
+                        <option value="native">Native</option>
+                        <option value="fluent">Fluent</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="basic">Basic</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="languagesContainer">
+                <!-- Additional languages will be added here -->
+            </div>
+            
+            <div class="add-btn-container">
+                <button class="btn btn-outline" onclick="addLanguage()"><i class="fas fa-plus"></i> Add Another Language</button>
+            </div>
+        </div>
+        
+        <!-- Form Tips -->
+        <div class="form-tips">
+            <h4><i class="fas fa-lightbulb"></i> Skills Tips</h4>
+            <ul>
+                <li>Include both hard and soft skills</li>
+                <li>Tailor your skills to match the job description</li>
+                <li>List skills in order of proficiency or relevance</li>
+                <li>Be specific - instead of "Microsoft Office", list "Excel PivotTables"</li>
+                <li>Include industry-specific keywords for ATS scanning</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Form Actions -->
+    <div class="form-actions">
+        <button class="btn btn-secondary" onclick="navigateToStep(4)">Back</button>
+        <button class="btn btn-success" onclick="navigateToStep(6)">Save & Continue</button>
+    </div>
+</div>
+
+<!-- Step 6: Summary -->
+<div class="form-container" id="step6" style="display: none;">
+    <div class="form-header-section">
+        <h2>Professional Summary</h2>
+        <p>Write a compelling summary that highlights your experience and achievements.</p>
+    </div>
+    
+    <div class="form-body">
+        <div class="form-section">
+            <div class="form-group">
+                <label for="professionalSummary">Professional Summary <span class="optional">*</span></label>
+                <textarea id="professionalSummary" rows="5" placeholder="Experienced professional with 5+ years in... Proven track record of... Seeking to leverage expertise in..." required></textarea>
+                <p class="optional" style="margin-top: 5px;">Typically 3-5 sentences highlighting your key qualifications</p>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <div class="form-group">
+                <label for="careerObjective">Career Objective <span class="optional">(Optional)</span></label>
+                <textarea id="careerObjective" rows="3" placeholder="Seeking a challenging role in... where I can apply my... to contribute to..."></textarea>
+                <p class="optional" style="margin-top: 5px;">Optional for entry-level candidates or career changers</p>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3 class="form-section-title">Key Achievements</h3>
+            
+            <div id="achievementsContainer">
+                <div class="form-group">
+                    <label>Achievement #1 <span class="optional">*</span></label>
+                    <input type="text" placeholder="Increased sales by 25% through..." required>
+                </div>
+            </div>
+            
+            <div class="add-btn-container">
+                <button class="btn btn-outline" onclick="addAchievement()"><i class="fas fa-plus"></i> Add Another Achievement</button>
+            </div>
+        </div>
+        
+        <!-- Form Tips -->
+        <div class="form-tips">
+            <h4><i class="fas fa-lightbulb"></i> Summary Tips</h4>
+            <ul>
+                <li>Start with your job title and years of experience</li>
+                <li>Include 2-3 key achievements with quantifiable results</li>
+                <li>Mention your top skills and areas of expertise</li>
+                <li>Tailor it to the specific job you're applying for</li>
+                <li>Keep it concise - recruiters spend only seconds scanning resumes</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Form Actions -->
+    <div class="form-actions">
+        <button class="btn btn-secondary" onclick="navigateToStep(5)">Back</button>
+        <button class="btn btn-success" onclick="navigateToStep(7)">Save & Continue</button>
+    </div>
+</div>
+
+<!-- Step 7: References -->
+<div class="form-container" id="step7" style="display: none;">
+    <div class="form-header-section">
+        <h2>References</h2>
+        <p>Provide professional references who can vouch for your qualifications.</p>
+    </div>
+    
+    <div class="form-body">
+        <div class="form-tips">
+            <h4><i class="fas fa-info-circle"></i> Note on References</h4>
+            <p>Most resumes don't include references directly. Instead, you can note "References available upon request". However, it's good to have them prepared separately.</p>
+        </div>
+        
+        <div id="referencesContainer">
+            <div class="repeater-section">
+                <button class="remove-btn" onclick="removeReference(this)"><i class="fas fa-times"></i></button>
+                
+                <div class="form-section">
+                    <h3 class="form-section-title">Reference #1</h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="refName">Full Name <span class="optional">*</span></label>
+                            <input type="text" id="refName" placeholder="Jane Smith" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="refTitle">Job Title <span class="optional">*</span></label>
+                            <input type="text" id="refTitle" placeholder="Senior Manager" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="refCompany">Company <span class="optional">*</span></label>
+                            <input type="text" id="refCompany" placeholder="ABC Corporation" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="refRelationship">Relationship <span class="optional">*</span></label>
+                            <input type="text" id="refRelationship" placeholder="Former Manager" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="refEmail">Email <span class="optional">*</span></label>
+                            <input type="email" id="refEmail" placeholder="j.smith@company.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="refPhone">Phone <span class="optional">(Optional)</span></label>
+                            <input type="tel" id="refPhone" placeholder="+1 (123) 456-7890">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="add-btn-container">
+            <button class="btn btn-outline" onclick="addReference()"><i class="fas fa-plus"></i> Add Another Reference</button>
+        </div>
+        
+        <div class="form-group" style="margin-top: 30px;">
+            <label>
+                <input type="checkbox" id="includeReferences"> Include "References available upon request" on my resume
+            </label>
+        </div>
+        
+        <!-- Form Tips -->
+        <div class="form-tips">
+            <h4><i class="fas fa-lightbulb"></i> Reference Tips</h4>
+            <ul>
+                <li>Always ask permission before listing someone as a reference</li>
+                <li>Choose references who know your work well and will speak positively</li>
+                <li>Provide each reference with a copy of your resume</li>
+                <li>Include 3-5 professional references</li>
+                <li>Update your references periodically</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Form Actions -->
+    <div class="form-actions">
+        <button class="btn btn-secondary" onclick="navigateToStep(6)">Back</button>
+        <button class="btn btn-success" onclick="navigateToStep(8)">Save & Continue</button>
+    </div>
+</div>
+
+
+
+
+        
+        <!-- Step 8: Finalize -->
+        <div class="form-container" id="step8" style="display: none;">
+            <div class="form-header-section">
+                <h2>Resume Preview</h2>
+                <p>Review your resume details and download when ready.</p>
+            </div>
+            
+            <div class="form-body">
+                <div class="resume-preview" id="resumePreview">
+                    <div class="preview-header">
+                        <div>
+                            <h1 id="previewName">John Doe</h1>
+                            <p id="previewJobTitle">Software Engineer</p>
+                        </div>
+                        <div class="preview-contact">
+                            <p id="previewEmail">john.doe@example.com</p>
+                            <p id="previewPhone">+1 (123) 456-7890</p>
+                            <p id="previewLocation">New York, NY</p>
+                            <p id="previewLinkedIn">linkedin.com/in/johndoe</p>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-section">
+                        <h3>Summary</h3>
+                        <p id="previewSummary">Experienced software engineer with 5+ years in developing scalable web applications. Specialized in JavaScript frameworks and cloud architecture.</p>
+                    </div>
+                    
+                    <div class="preview-section">
+                        <h3>Experience</h3>
+                        <div class="preview-item">
+                            <h4>Senior Software Engineer - Tech Innovations Inc.</h4>
+                            <p class="date">Jan 2020 - Present</p>
+                            <p>Led development of customer portal resulting in 30% increase in customer satisfaction.</p>
+                        </div>
+                        <div class="preview-item">
+                            <h4>Software Developer - Digital Solutions LLC</h4>
+                            <p class="date">Jun 2017 - Dec 2019</p>
+                            <p>Developed and maintained e-commerce platform handling $2M+ monthly transactions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-section">
+                        <h3>Education</h3>
+                        <div class="preview-item">
+                            <h4>M.S. Computer Science - University of Technology</h4>
+                            <p class="date">2015 - 2017</p>
+                        </div>
+                        <div class="preview-item">
+                            <h4>B.S. Software Engineering - State University</h4>
+                            <p class="date">2011 - 2015</p>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-section">
+                        <h3>Skills</h3>
+                        <p>JavaScript, React, Node.js, Python, AWS, Docker, SQL, Agile Methodologies</p>
+                    </div>
+                </div>
+                
+                <div class="form-tips" style="margin-top: 30px;">
+                    <h4><i class="fas fa-lightbulb"></i> Final Tips</h4>
+                    <ul>
+                        <li>Review all information for accuracy and spelling.</li>
+                        <li>Consider having someone else proofread your resume.</li>
+                        <li>Save your resume as a PDF unless otherwise requested.</li>
+                        <li>Name your file professionally: "FirstName_LastName_Resume.pdf"</li>
+                        <li>Update your resume every 6 months even if you're not job searching.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="navigateToStep(7)">Back</button>
+                <button class="btn btn-success"><i class="fas fa-download"></i> Download Resume</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="form-footer">
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> ResumeCraft. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="java script/script.js"></script>
+
+</body>
+</html>
