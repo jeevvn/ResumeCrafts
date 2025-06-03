@@ -601,7 +601,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <video class="video-bg" autoplay muted loop>
-            <source src="https://cdn.pixabay.com/video/2025/04/29/275498_large.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/5971450/5971450-sd_960_506_25fps.mp4" type="video/mp4">
         </video>
         <div class="overlay"></div>
         <div class="container">
@@ -699,48 +699,54 @@
 
     <!-- How It Works Section -->
     <section class="section" id="how-it-works">
-        <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <div class="how-it-works">
-                <div class="works-container">
-                    <div class="works-video">
-                        <div class="video-placeholder">
-                            <div>
-                                <i class="fas fa-play-circle" style="font-size: 4rem; margin-bottom: 20px;"></i>
-                                <p>Quick Demo Video</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="works-steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h3>Choose a Template</h3>
-                                <p>Browse our collection of professionally designed resume templates and pick the one that suits your style.</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h3>Fill in Your Details</h3>
-                                <p>Enter your personal information, work experience, education, and skills in our easy-to-use form.</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h3>Customize & Download</h3>
-                                <p>Preview your resume, make any final adjustments, then download in PDF format ready to share.</p>
-                            </div>
-                        </div>
-                        <div style="text-align: center; margin-top: 30px;">
-                            <a href="#" class="btn">Start Creating</a>
-                        </div>
-                    </div>
-                </div>
+  <div class="container">
+    <h2 class="section-title">How It Works</h2>
+    <div class="how-it-works">
+      <div class="works-container">
+        <div class="works-video">
+          <div class="video-placeholder" id="videoPlaceholder" style="cursor: pointer; text-align: center;">
+            <div id="playButton">
+              <i class="fas fa-play-circle" style="font-size: 4rem; margin-bottom: 20px;"></i>
+              <p>Quick Demo Video</p>
             </div>
+            <!-- Hidden video element -->
+            <video id="demoVideo" width="100%" controls style="display: none;">
+              <source src="https://videos.pexels.com/video-files/4549682/4549682-sd_640_360_30fps.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
-    </section>
+        <div class="works-steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Choose a Template</h3>
+              <p>Browse our collection of professionally designed resume templates and pick the one that suits your style.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Fill in Your Details</h3>
+              <p>Enter your personal information, work experience, education, and skills in our easy-to-use form.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Customize & Download</h3>
+              <p>Preview your resume, make any final adjustments, then download in PDF format ready to share.</p>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 30px;">
+            <a href="#" class="btn">Start Creating</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- About Us Section -->
     <section class="section" id="about">
@@ -902,6 +908,15 @@
             // window.open('form.html', '_blank');
         });
         
+        //demo video
+         document.getElementById('videoPlaceholder').addEventListener('click', function () {
+    const video = document.getElementById('demoVideo');
+    const playButton = document.getElementById('playButton');
+    playButton.style.display = 'none';
+    video.style.display = 'block';
+    video.play();
+  });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
