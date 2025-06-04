@@ -171,38 +171,24 @@
             color: var(--accent);
         }
 
-        .dark-mode-toggle {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 30px;
-            padding: 5px;
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            width: 60px;
-            height: 30px;
-            position: relative;
-        }
-
-        .dark-mode-toggle.active {
-            background: var(--primary);
-        }
-
-        .dark-mode-toggle .toggle-switch {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--text);
-            position: absolute;
-            left: 4px;
+            color: var(--text);
             transition: var(--transition);
+            margin-left: 20px;
         }
 
-        .dark-mode-toggle.active .toggle-switch {
-            left: calc(100% - 26px);
-            background: white;
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
         }
-
         /* Steps Navigation */
         .steps-container {
             display: flex;
