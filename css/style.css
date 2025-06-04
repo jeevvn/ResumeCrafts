@@ -81,6 +81,7 @@
             background: var(--secondary);
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+            color: #121212;
         }
 
         .btn-outline {
@@ -148,6 +149,8 @@
 
         nav ul {
             display: flex;
+            justify-content: center;
+            align-items: center;
             list-style: none;
         }
 
@@ -397,9 +400,22 @@
             color: white;
             font-size: 5rem;
 
-                
-
         }
+        .profile-pic {
+        width: 120px;         
+        height: 120px;        
+        object-fit: cover;
+        border-radius: 5%;   
+        border: 2px solid #ccc;
+        }
+        .member-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 140px; /* or auto */
+        object-fit: cover;
+        }
+
 
         .member-info {
             padding: 20px;
